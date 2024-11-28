@@ -77,13 +77,17 @@ class FrozenLake:
             self.salvarArquivo(robo.qtable)
             episode_over = terminou or truncou
     
+
+
+            
     def testarMapa(self,robo:ReiforcementLearningAgent,env:gym.Env,mapa):
         estado, info = env.reset()
         estado = tuple(mapa),estado
         episode_over=False
+        img_placeholder = st.empty()  # Cria o placeholder para a imagem
         while not episode_over:
-            imagem=env.render()
-            st.image(imagem)
+            imagem = env.render(mode='rgb_array')  # Captura a imagem do estado atual
+            img_placeholder.image(imagem, channels="RGB", use_column_width=True)
             acao = robo.decisaoTeste(estado=estado)
             proximo_estado, recompensa, terminou, truncou, p = env.step(acao)
             estado=proximo_estado
