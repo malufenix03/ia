@@ -95,6 +95,9 @@ class FrozenLake:
             proximo_estado, recompensa, terminou, truncou, p = env.step(acao)
             estado=proximo_estado
             episode_over = terminou or truncou
+        imagem = env.render()
+        img_placeholder.image(imagem, channels="RGB")
+        time.sleep(1)
 
 
     def mapa(self,robo:ReiforcementLearningAgent):
