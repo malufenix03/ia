@@ -6,6 +6,7 @@ import shutil
 import os
 from gymnasium.envs.toy_text.frozen_lake import generate_random_map
 import streamlit as st
+import time
 
 
 class ReiforcementLearningAgent:
@@ -91,11 +92,10 @@ class FrozenLake:
         while not episode_over:
             imagem = env.render()  
             img_placeholder.image(imagem, channels="RGB")
+            time.sleep(0.1)
             acao = robo.decisaoTeste(estado=estado)
             proximo_estado, recompensa, terminou, truncou, p = env.step(acao)
             estado=proximo_estado
-            imagem = env.render()  
-            img_placeholder.image(imagem, channels="RGB")
             episode_over = terminou or truncou
 
 
