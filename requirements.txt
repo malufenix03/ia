@@ -27,4 +27,4 @@ pywin32-ctypes
 requests                                        
 swig
 streamlit
-                   
+ wheel
