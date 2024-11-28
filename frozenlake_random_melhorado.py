@@ -94,6 +94,8 @@ class FrozenLake:
             acao = robo.decisaoTeste(estado=estado)
             proximo_estado, recompensa, terminou, truncou, p = env.step(acao)
             estado=proximo_estado
+            imagem = env.render()  
+            img_placeholder.image(imagem, channels="RGB", use_column_width=True)
             episode_over = terminou or truncou
 
 
