@@ -64,10 +64,13 @@ class FrozenLake:
         os.rename('temp.pkl',self.namefile)
 
     def treinarMapa(self,robo:ReiforcementLearningAgent,env:gym.Env,mapa):
+        global img_placeholder
         estado, info = env.reset()
         estado=tuple(mapa),estado
         episode_over=False
         while not episode_over:
+            imagem = env.render()  
+            img_placeholder.image(imagem, channels="RGB", use_column_width=True)
             acao = robo.decisaoTreino(estado=estado,env=env)
             proximo_estado, recompensa, terminou, truncou, p = env.step(acao)
             if recompensa == 0 and terminou == True:
@@ -95,12 +98,9 @@ class FrozenLake:
 
 
     def mapa(self,robo:ReiforcementLearningAgent):
-        global img_placeholder
         mapa=generate_random_map(size=self.size,p=self.frozen)
         env = gym.make('FrozenLake-v1', is_slippery=False,render_mode="rgb_array",desc=mapa)
         for map in range(self.treino_mapa):
-            imagem = env.render()  
-            img_placeholder.image(imagem, channels="RGB", use_column_width=True)
             self.testarMapa(robo=robo,env=env,mapa=mapa)
         #input("Pressione para testar se o robo aprendeu o mapa")
         self.testarMapa(robo=robo,env=env,mapa=mapa)
