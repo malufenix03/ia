@@ -38,8 +38,8 @@ class FrozenLake:
         self.epsilon=0.1
         self.size=4
         self.frozen=0.6
-        self.treino_mapa=100
-        self.num_mapa=100
+        self.treino_mapa=1
+        self.num_mapa=10000
         self.namefile='qtablemelhor.pkl'
         self.backupfile='qtablemelhor_backup.pkl'
 
@@ -91,7 +91,7 @@ class FrozenLake:
         mapa=generate_random_map(size=self.size,p=self.frozen)
         env = gym.make('FrozenLake-v1', is_slippery=False,render_mode="human",desc=mapa)
         for map in range(self.treino_mapa):
-            self.treinarMapa(robo=robo,env=env,mapa=mapa)
+            self.testarMapa(robo=robo,env=env,mapa=mapa)
         #input("Pressione para testar se o robo aprendeu o mapa")
         self.testarMapa(robo=robo,env=env,mapa=mapa)
         env.close()
