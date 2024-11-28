@@ -84,9 +84,10 @@ class FrozenLake:
         estado, info = env.reset()
         estado = tuple(mapa),estado
         episode_over=False
-        img_placeholder = st.empty()  # Cria o placeholder para a imagem
+        
         while not episode_over:
             imagem = env.render()  
+            globar img_placeholder
             img_placeholder.image(imagem, channels="RGB", use_column_width=True)
             acao = robo.decisaoTeste(estado=estado)
             proximo_estado, recompensa, terminou, truncou, p = env.step(acao)
@@ -117,6 +118,5 @@ class FrozenLake:
         for episodio in range(self.num_mapa):
             self.mapa(robo)
         
-
-    
+img_placeholder = st.empty()  # Cria o placeholder para a imagem   
 FrozenLake().frozenLake()
