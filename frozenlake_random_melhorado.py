@@ -5,6 +5,7 @@ import pickle
 import shutil
 import os
 from gymnasium.envs.toy_text.frozen_lake import generate_random_map
+import streamlit as st
 
 
 class ReiforcementLearningAgent:
@@ -81,6 +82,8 @@ class FrozenLake:
         estado = tuple(mapa),estado
         episode_over=False
         while not episode_over:
+            imagem=env.render()
+            st.image(imagem)
             acao = robo.decisaoTeste(estado=estado)
             proximo_estado, recompensa, terminou, truncou, p = env.step(acao)
             estado=proximo_estado
@@ -89,7 +92,7 @@ class FrozenLake:
 
     def mapa(self,robo:ReiforcementLearningAgent):
         mapa=generate_random_map(size=self.size,p=self.frozen)
-        env = gym.make('FrozenLake-v1', is_slippery=False,render_mode="human",desc=mapa)
+        env = gym.make('FrozenLake-v1', is_slippery=False,render_mode="rgb_array",desc=mapa)
         for map in range(self.treino_mapa):
             self.testarMapa(robo=robo,env=env,mapa=mapa)
         #input("Pressione para testar se o robo aprendeu o mapa")
@@ -98,7 +101,7 @@ class FrozenLake:
 
     def testarRobo(self,robo:ReiforcementLearningAgent):
         mapa=generate_random_map(size=self.size,p=self.frozen)
-        env = gym.make('FrozenLake-v1', is_slippery=False,render_mode="human",desc=mapa)
+        env = gym.make('FrozenLake-v1', is_slippery=False,render_mode="rgb_array",desc=mapa)
         #input("Pressione para testar se o robo aprendeu o jogo de maneira generica")
         self.testarMapa(robo=robo,env=env,mapa=mapa)
         env.close
