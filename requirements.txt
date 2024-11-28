@@ -26,5 +26,6 @@ pytweening
 pywin32-ctypes        
 requests                                        
 swig
+gymnasium[box2d]
 streamlit
  wheel
