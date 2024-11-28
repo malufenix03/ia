@@ -70,8 +70,6 @@ class FrozenLake:
         estado=tuple(mapa),estado
         episode_over=False
         while not episode_over:
-            imagem = env.render()  
-            img_placeholder.image(imagem, channels="RGB", use_column_width=True)
             acao = robo.decisaoTreino(estado=estado,env=env)
             proximo_estado, recompensa, terminou, truncou, p = env.step(acao)
             if recompensa == 0 and terminou == True:
@@ -92,7 +90,7 @@ class FrozenLake:
         while not episode_over:
             imagem = env.render()  
             img_placeholder.image(imagem, channels="RGB")
-            time.sleep(0.1)
+            time.sleep(1)
             acao = robo.decisaoTeste(estado=estado)
             proximo_estado, recompensa, terminou, truncou, p = env.step(acao)
             estado=proximo_estado
