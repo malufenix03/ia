@@ -18,8 +18,7 @@ PyGetWindow
 pyjsparser                
 PyMsgBox                 
 pyperclip                 
-PyPrind                   
-pyproject-toml            
+PyPrind                             
 PyRect                   
 PyScreeze                 
 pySmartDL                 
