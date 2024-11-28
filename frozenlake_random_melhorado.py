@@ -95,9 +95,12 @@ class FrozenLake:
 
 
     def mapa(self,robo:ReiforcementLearningAgent):
+        global img_placeholder
         mapa=generate_random_map(size=self.size,p=self.frozen)
         env = gym.make('FrozenLake-v1', is_slippery=False,render_mode="rgb_array",desc=mapa)
         for map in range(self.treino_mapa):
+            imagem = env.render()  
+            img_placeholder.image(imagem, channels="RGB", use_column_width=True)
             self.testarMapa(robo=robo,env=env,mapa=mapa)
         #input("Pressione para testar se o robo aprendeu o mapa")
         self.testarMapa(robo=robo,env=env,mapa=mapa)
