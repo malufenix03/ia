@@ -93,6 +93,7 @@ class FrozenLake:
             img_placeholder.image(imagem, channels="RGB", use_column_width=True)
             acao = robo.decisaoTeste(estado=estado)
             proximo_estado, recompensa, terminou, truncou, p = env.step(acao)
+            print("ue")
             estado=proximo_estado
             imagem = env.render()  
             img_placeholder.image(imagem, channels="RGB", use_column_width=True)
