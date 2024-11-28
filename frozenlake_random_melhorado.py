@@ -84,10 +84,9 @@ class FrozenLake:
         estado, info = env.reset()
         estado = tuple(mapa),estado
         episode_over=False
-        
+        global img_placeholder
         while not episode_over:
             imagem = env.render()  
-            global img_placeholder
             img_placeholder.image(imagem, channels="RGB", use_column_width=True)
             acao = robo.decisaoTeste(estado=estado)
             proximo_estado, recompensa, terminou, truncou, p = env.step(acao)
